@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 
 # Create your views here.
 
@@ -9,10 +9,5 @@ def connexion(request):
     return render(request, 'login/connexion.html')
 
 def detail(request, user_name_id):
-    try:
-        people = Usager.objects.get(pk=user_name_id)
-        pic = people.user_logo
-    except Usager.DoesNotExist:
-        raise Http404("L'Utilisateur n'existe pas")
-
-    return render(request, 'login/detail.html', {'utilisateur': people}, {'photo': pic})
+    people = get_object_or_404(Usager,pk=user_name_id)
+    return render(request, 'login/detail.html', {'utilisateur': people})
