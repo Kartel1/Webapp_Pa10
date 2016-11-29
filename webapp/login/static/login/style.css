@@ -1,0 +1,13 @@
+body {
+    background: white url("image/bx45.png");
+    background-size: auto auto;
+
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.navbar-brand{
+    font-family: 'Montserrat Subrayada', sans-serif;
+}
