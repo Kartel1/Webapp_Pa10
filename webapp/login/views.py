@@ -1,13 +1,22 @@
-from django.shortcuts import render,get_object_or_404
-
-# Create your views here.
-
-from django.http import Http404
+from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Usager
 
-def connexion(request):
-    return render(request, 'login/connexion.html')
 
-def detail(request, user_name_id):
-    people = get_object_or_404(Usager,pk=user_name_id)
-    return render(request, 'login/detail.html', {'utilisateur': people})
+class ConnexionView(generic.ListView):
+    template_name = 'login/connexion.html'
+
+    def get_queryset(self):
+        return Usager.objects.all()
+
+class ProfileView(generic.DetailView):
+    model = Usager
+    template_name = 'login/detail.html'
+
+class ModifUsager(CreateView):
+    model=Usager
+    fields = ['mail', 'password', 'user_name', 'user_logo']
+
+class ModifUpdate(UpdateView):
+    model=Usager
+    fields = ['mail', 'password', 'user_name', 'user_logo']
