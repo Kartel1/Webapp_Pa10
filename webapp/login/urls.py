@@ -5,14 +5,19 @@ app_name = 'login'
 
 urlpatterns = [
     # /login/
-    url(r'^$', views.ConnexionView.as_view(), name='connexion'),
+    url(r'^home/$', views.ConnexionView.as_view(), name='connexion'),
 
+    # /login/register/
+    url(r'register/$', views.UserFormView.as_view(), name='register'),
+
+    # /login/modif/
     url(r'modif/$',views.ModifUsager.as_view(), name='usager-modifier'),
 
-    # /login/user_id
-    url(r'^(?P<pk>[0-9]+)/$', views.ProfileView.as_view(), name='detail'),
-    #
+    # /login/user/user_id/
+    url(r'^user/(?P<pk>[0-9]+)/$', views.ProfileView.as_view(), name='detail'),
 
+    # /login/user/user_id/
+    #url(r'user/(?P<pk>[0-9]+)$',views.ModifUpdate.as_view(), name='user-update'),
 
-
+    url(r'logout/$',views.LogoutView.as_view(), name='logout')
 ]
