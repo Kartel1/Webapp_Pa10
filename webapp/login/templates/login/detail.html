@@ -5,12 +5,14 @@
 
 <h2>
 
-    {{ utilisateur }}
+    {{ usager.user_name}}
+    {{ usager.mail}}
+
 
 </h2>
 <br />
 <br />
 <br />
-<img src="../../static/login/image/Kakashi.jpg" />
+<img src="{{ usager.user_logo.url }} " class="img-responsive" />
 
 {% endblock %}
