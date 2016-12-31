@@ -29,11 +29,13 @@
         <!--Items-->
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
-                <li class="">
-                    <a href="{% url 'login:usager-modifier' %}">
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Mon Profil
-                    </a>
-                </li>
+                {% for personne in user.personne_set.all %}
+                    <li class="">
+                        <a href= "{% url 'login:detail' personne.pk %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Mon Profil
+                        </a>
+                    </li>
+                {% endfor %}
                  <li class="">
                     <a href="#">
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp; Chat

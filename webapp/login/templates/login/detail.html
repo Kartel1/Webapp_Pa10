@@ -5,14 +5,14 @@
 
 <h2>
 
-    {{ usager.user_name}}
-    {{ usager.mail}}
+    {{ personne }}
+    {{ personne.usager.email }}
 
 
 </h2>
 <br />
 <br />
 <br />
-<img src="{{ usager.user_logo.url }} " class="img-responsive" />
+<img src="{{ personne.user_logo.url }} " class="img-responsive" />
 
 {% endblock %}
