@@ -8,4 +8,12 @@
         Bienvenue sur la Webapp du PA10 SYSICO
     </h1>
 
+<h2>
+    {% for personne in user.personne_set.all %}
+    <li> {{ personne }}</li>
+
+    {% endfor %}
+
+</h2>
+
 {% endblock%}
