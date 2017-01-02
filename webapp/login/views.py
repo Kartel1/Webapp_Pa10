@@ -9,7 +9,7 @@ from django.http import *
 from django.conf import settings
 
 
-from .models import Personne
+from .models import Personne,Doc
 from .forms import UserForm
 
 
@@ -28,12 +28,15 @@ class ProfileView(generic.DetailView):
 class ModifUsager(CreateView):
     model = Personne
     fields = ['user_infos', 'user_logo']
+class CreationFile(CreateView):
+    model = Doc
+    fields = ['fichier_titre', 'fichier_description', 'fichier_file']
 
 
-class ModifUpdate(DeleteView):
+class ModifUpdate(UpdateView):
     model=Personne
     fields = ['user_infos', 'user_logo']
-    success_url =  reverse_lazy('login:connexion')
+    #success_url =  reverse_lazy('login:details')
 
 class UserFormView(View):
     form_class = UserForm

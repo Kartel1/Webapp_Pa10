@@ -17,4 +17,14 @@ class Personne(models.Model):
     def __str__(self):
         return str(self.usager) + ' - ' + self.user_infos
 
+class Doc(models.Model):
+    utilisateur = models.ForeignKey(Personne, on_delete = models.CASCADE)
+    fichier_titre = models.CharField(max_length=500)
+    fichier_description = models.CharField(max_length=1000)
+    fichier_file = models.FileField()
+    is_favorite = models.BooleanField(default=False)
+
+    def __str__(self):
+        return  self.fichier_titre
+
 
