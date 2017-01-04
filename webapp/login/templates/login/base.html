@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav">
                 {% for personne in user.personne_set.all %}
                     <li class="">
-                        <a href= "{% url 'login:detail' personne.pk %}">
+                        <a href= "{% url 'login:detail' personne.slug %}">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Mon Profil
                         </a>
                     </li>
