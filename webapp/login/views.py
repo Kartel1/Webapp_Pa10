@@ -1,7 +1,7 @@
 from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormMixin,FormView
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View, TemplateView
 from django.contrib.auth.models import User
@@ -11,7 +11,6 @@ from django.conf import settings
 
 from .models import Personne,Doc
 from .forms import UserForm
-
 
 
 
@@ -25,16 +24,21 @@ class ProfileView(generic.DetailView):
     model = Personne
     template_name = 'login/detail.html'
 
+
 class ModifUsager(CreateView):
     model = Personne
     fields = ['user_infos', 'user_logo']
+
+
 class CreationFile(CreateView):
     model = Doc
     fields = ['fichier_titre', 'fichier_description', 'fichier_file']
-
+    def form_valid(self, form):
+        form.instance.utilisateur = self.request.user.personne_set.get()
+        return super(CreationFile, self).form_valid(form)
 
 class ModifUpdate(UpdateView):
-    model=Personne
+    model = Personne
     fields = ['user_infos', 'user_logo']
     #success_url =  reverse_lazy('login:details')
 
