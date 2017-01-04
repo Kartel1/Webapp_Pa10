@@ -15,10 +15,10 @@ urlpatterns = [
     #url(r'modif/$',views.ModifUsager.as_view(), name='usager-modifier'),
 
     # /login/user/user_id/
-    url(r'^user/(?P<pk>[0-9]+)/$', views.ProfileView.as_view(), name='detail'),
+    url(r'^user-(?P<slug>[\w-]+)/$', views.ProfileView.as_view(), name='detail'),
 
     # /login/user/user_id/
-    url(r'user/(?P<pk>[0-9]+)/update/$',views.ModifUpdate.as_view(), name='user-update'),
+    url(r'^user-(?P<slug>[\w-]+)/update/$',views.ModifUpdate.as_view(), name='user-update'),
 
     url(r'^add_fichier/$',views.CreationFile.as_view(), name ='add_fichier'),
 

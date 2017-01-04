@@ -9,6 +9,7 @@ from django.http import *
 from django.conf import settings
 
 
+
 from .models import Personne,Doc
 from .forms import UserForm
 
@@ -64,9 +65,7 @@ class UserFormView(View):
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()
-            user.personne_set.create(user_logo='Anonymous.png')
-
-
+            user.personne_set.create(user_logo = 'Anonymous.png', slug = username )
 
             # returns User objects if credentials are correct
             user = authenticate(username=username, password=password)
