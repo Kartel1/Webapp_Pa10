@@ -1,10 +1,11 @@
 {% extends 'login/base.html' %}
 {% block title %} Ajout d'un fichier{% endblock %}
+{% block doc_active %} active {% endblock %}
 
 {% block body %}
 <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% include 'login/form-template.html' %}
+    {% include 'login/form-temp.html' %}
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-success">Enregistrement</button>
