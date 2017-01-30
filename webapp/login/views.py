@@ -33,10 +33,16 @@ class ModifUsager(CreateView):
 
 class CreationFile(CreateView):
     model = Doc
-    fields = ['fichier_titre', 'fichier_description', 'fichier_file']
+    fields = ['fichier_titre', 'fichier_description', 'fichier_file', 'type']
     def form_valid(self, form):
         form.instance.utilisateur = self.request.user.personne_set.get()
+        #form.instance.date(auto_now=True)
         return super(CreationFile, self).form_valid(form)
+
+
+#class SuppressionFile(DeleteView):
+#    model = Doc
+#    def
 
 class ModifUpdate(UpdateView):
     model = Personne
