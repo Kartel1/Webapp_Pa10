@@ -22,5 +22,7 @@ urlpatterns = [
 
     url(r'^add_fichier/$',views.CreationFile.as_view(), name ='add_fichier'),
 
-    url(r'logout/$',views.LogoutView.as_view(), name='logout')
+    url(r'logout/$',views.LogoutView.as_view(), name='logout'),
+
+    url(r'^document/(?P<pk>[0-9]+)/delete/$',views.SuppressionFile.as_view(), name='file-delete'),
 ]

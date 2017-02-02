@@ -15,7 +15,9 @@
         <li>Adresse mail: {{ personne.usager.email }}</li>
         <li>Mes informations: {{ personne.user_infos }}</li>
       </ul><br>
+      {% if request.user == personne.usager %}
       <a href="{% url 'login:user-update' personne.slug %}" class="btn btn-info" role="button">Modifier mes infos</a>
+      {% endif %}
     </div>
     <div class="col-sm-7 sidenav">
         <h4>Mes fichiers</h4>
@@ -24,17 +26,25 @@
           <thead>
             <tr>
               <th>Nom du fichier</th>
-              <th>Type</th>
               <th>Date d'ajout</th>
             </tr>
           </thead>
           <tbody>
             {% for doc in personne.doc_set.all %}
             <tr>
-              <td><a href="/media/{{ doc.fichier_file }}" > {{doc.fichier_file}} </a></td>
-              <td>{{ doc.type }}</td>
-              <td>{{ doc.date }}</td>
-              <td><button type="submit" class="btn btn-danger">Supprimer</button></td>
+                <td><a href="/media/{{ doc.fichier_file }}" > {{doc.fichier_file}} </a></td>
+                <td>{{ doc.type }}</td>
+                <td>{{ doc.date }}</td>
+                {% if request.user == personne.usager %}
+                {% csrf_token %}
+                <td>
+                    <form action="{% url 'login:file-delete' doc.id %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="doc_id" value="{{ doc.id }}" />
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+              {% endif %}
             </tr>
             {% endfor %}
           </tbody>

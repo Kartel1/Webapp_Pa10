@@ -3,6 +3,9 @@
 
 {% block body %}
     <br />
+    <br />
+    <br />
+
 
     <h1>
         Bienvenue sur la Webapp du PA10 SYSICO
@@ -10,7 +13,7 @@
 
 <h2>
     {% for personne in user.personne_set.all %}
-    <li> {{ personne.usager }}</li>
+    <span> {{ personne.usager }}</span>
 
     {% endfor %}
 

@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',LoginView.as_view()),
     url(r'^', include('login.urls')),
+    url(r'^', include('chat.urls'))
 
 ]
 
