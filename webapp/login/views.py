@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View, TemplateView
 from django.contrib.auth.models import User
 from django.http import *
-from django.conf import settings
 
 
 
@@ -33,16 +32,16 @@ class ModifUsager(CreateView):
 
 class CreationFile(CreateView):
     model = Doc
-    fields = ['fichier_titre', 'fichier_description', 'fichier_file', 'type']
+    fields = ['fichier_titre', 'fichier_description', 'fichier_file']
     def form_valid(self, form):
         form.instance.utilisateur = self.request.user.personne_set.get()
-        #form.instance.date(auto_now=True)
         return super(CreationFile, self).form_valid(form)
 
 
-#class SuppressionFile(DeleteView):
-#    model = Doc
-#    def
+class SuppressionFile(DeleteView):
+    model = Doc
+    def get_success_url(self):
+        return reverse_lazy('login:detail', kwargs={'slug':self.request.user.personne_set.get().slug})
 
 class ModifUpdate(UpdateView):
     model = Personne

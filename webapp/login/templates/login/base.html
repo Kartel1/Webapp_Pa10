@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
      <title> {% block title %}SYSICO {% endblock %}</title>
     {% load staticfiles %}
+    {% block head %}
+    {% endblock %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada" rel="stylesheet" type='text/css' />
     <link rel="stylesheet" type="text/css" href="{% static 'login/style.css' %}" />
@@ -37,7 +39,7 @@
                     </li>
 
                  <li class="">
-                    <a href="#">
+                    <a href="{% url 'chat:chat' %}">
                         <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp; Chat
                     </a>
                 </li>
