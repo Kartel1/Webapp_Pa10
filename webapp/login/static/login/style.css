@@ -6,6 +6,7 @@ body {
 
 .navbar{
     border-radius: 0;
+    position: fixed;
 }
 
 .navbar-brand{

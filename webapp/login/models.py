@@ -23,8 +23,8 @@ class Doc(models.Model):
     fichier_description = models.CharField(max_length=1000)
     fichier_file = models.FileField()
     is_favorite = models.BooleanField(default=False)
-    date = models.DateField(auto_now=False, auto_now_add=False)
-    type = models.CharField(max_length=20)
+    date = models.DateField(auto_now_add=True)
+
 
     def get_absolute_url(self):
         return reverse('login:detail', kwargs={'slug': self.utilisateur.slug})
