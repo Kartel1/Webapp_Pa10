@@ -11,10 +11,10 @@ def Talk(request):
 def Post(request):
     if request.method == "POST":
         msg = request.POST.get('msgbox', None)
-        c = Chat(user=request.user, message=msg)
+        c = Chat(user=request.user.personne_set.get(), message=msg)
         if msg != '':
             c.save()
-        return JsonResponse({ 'msg': msg, 'user': c.user.username })
+        return JsonResponse({ 'msg': msg, 'user': c.user.usager.username })
     else:
         return HttpResponse('Request must be POST.')
 

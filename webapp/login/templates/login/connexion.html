@@ -3,20 +3,34 @@
 
 {% block body %}
     <br />
-    <br />
-    <br />
+
 
 
     <h1>
         Bienvenue sur la Webapp du PA10 SYSICO
+        <br/>{{ user.personne_set.get }}
     </h1>
 
-<h2>
-    {% for personne in user.personne_set.all %}
-    <span> {{ personne.usager }}</span>
+    <img src="/media/sysico.jpg" id="img-sys" class="img-responsive" alt="Avatar">
+    <div class="right" id="test">
+        <div class="table-responsive" id="user-tab">
+            <table class="table" style="background-color: light-grey">
+            <thead>
+                <tr>
+                  <th>Autres Utilisateurs</th>
+              </thead>
+              <tbody>
+                    {% for personne in object_list %}
+                        {% if personne.usager != request.user %}
+                <tr>
+                    <td><a href="{% url 'login:detail' personne.slug %}" id="oth-user">{{ personne }}</a></td>
 
-    {% endfor %}
-
-</h2>
+                </tr>
+                    {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock%}

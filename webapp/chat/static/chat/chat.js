@@ -8,7 +8,7 @@ $('#chat-form').on('submit', function(event){
 
         success : function(json){
             $('#chat-msg').val('');
-            $('#msg-list').append('<li class="text-right list-group-item">' + json.msg + '</li>');
+            $('#msg-list').append('<p>' + json.msg + '</p>');
             var chatlist = document.getElementById('msg-list-div');
             chatlist.scrollTop = chatlist.scrollHeight;
         }
@@ -31,7 +31,7 @@ $(function(){
     $('#msg-list-div').on('scroll', function(){
         scrolling = true;
     });
-    refreshTimer = setInterval(getMessages, 500);
+    refreshTimer = setInterval(getMessages, 2500);
 });
 
 $(document).ready(function() {

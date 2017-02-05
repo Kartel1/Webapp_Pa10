@@ -9,7 +9,7 @@
       <h4>Mes informations</h4>
       <ul class="nav nav-pills nav-stacked">
         <li class="#">
-            <img src="{{ personne.user_logo.url }} " class="img-rounded" alt="Avatar" width="304" height="236">
+            <img src="{{ personne.user_logo.url }} " class="img-rounded" alt="Avatar" width="300">
         </li>
         <li><b>Pseudo: {{ personne.usager.username }}</b></li>
         <li>Adresse mail: {{ personne.usager.email }}</li>
@@ -19,24 +19,29 @@
       <a href="{% url 'login:user-update' personne.slug %}" class="btn btn-info" role="button">Modifier mes infos</a>
       {% endif %}
     </div>
+
+    <div class="col-sm-2 sidenav">
+    </div>
     <div class="col-sm-7 sidenav">
         <h4>Mes fichiers</h4>
-        <div class="table-responsive">
+        <div class="table-responsive" id="fileTab">
         <table class="table" style="background-color: white">
           <thead>
             <tr>
               <th>Nom du fichier</th>
+                <th>Description</th>
               <th>Date d'ajout</th>
             </tr>
           </thead>
           <tbody>
             {% for doc in personne.doc_set.all %}
             <tr>
-                <td><a href="/media/{{ doc.fichier_file }}" > {{doc.fichier_file}} </a></td>
-                <td>{{ doc.type }}</td>
+                <td><a href="/media/{{ doc.fichier_file }}" target="_blank" > {{doc.fichier_titre}} </a></td>
+                <td>{{ doc.fichier_description }}</td>
                 <td>{{ doc.date }}</td>
                 {% if request.user == personne.usager %}
                 {% csrf_token %}
+                <td></td>
                 <td>
                     <form action="{% url 'login:file-delete' doc.id %}" method="POST" style="display: inline;">
                         {% csrf_token %}

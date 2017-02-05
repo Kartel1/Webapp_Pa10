@@ -6,9 +6,23 @@ body {
 
 .navbar{
     border-radius: 0;
-    position: fixed;
 }
 
 .navbar-brand{
     font-family: 'Montserrat Subrayada', sans-serif;
+}
+
+.fileTab{
+
+    max width = 10%;
+
+
+}
+
+#oth-user{
+
+    font-family: 'Montserrat Subrayada', sans-serif;
+    text-align: left;
+    font-size: 2em;
+
 }
